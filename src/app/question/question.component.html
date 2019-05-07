@@ -1,0 +1,64 @@
+<div *ngIf="currentQ">
+	<div class="qDiv">
+		<span class="qNum">Q:{{qNum}}</span> <span class="q">{{currentQ.question}}</span>
+	</div>
+	<div class="space"></div>
+	<table>
+		<tr>
+			<th>
+				<div class="ansdiv">
+					<img class="wrong" *ngIf="isIncorrect[0]" src="../../assets/wrong.png">
+					<img class="right" *ngIf="isCorrect[0]"   src="../../assets/right.png">
+					<button
+					[class.incorrect]="isIncorrect[0]"
+					[class.correct]="isCorrect[0]"
+					[class.selectedAns]="!correctAns && selectedAns == 1"
+					class="ansBtn" (click)="onAnsClick(1)">{{answers[0]}}
+				</button>
+			</div>
+		</th>
+		<th>
+				<div class="ansdiv">
+					<img class="wrong" *ngIf="isIncorrect[1]" src="../../assets/wrong.png">
+					<img class="right" *ngIf="isCorrect[1]"   src="../../assets/right.png">
+					<button
+					[class.incorrect]="isIncorrect[1]"
+					[class.correct]="isCorrect[1]"
+					[class.selectedAns]="!correctAns && selectedAns == 2"
+					class="ansBtn" (click)="onAnsClick(2)">{{answers[1]}}
+				</button>
+			</div>
+		</th>
+	</tr>
+	<tr><!-- can't do *ngfor for answers because of that sepparation -->
+		<th>
+			<div class="ansdiv">
+					<img class="wrong" *ngIf="isIncorrect[2]" src="../../assets/wrong.png">
+					<img class="right" *ngIf="isCorrect[2]"   src="../../assets/right.png">
+					<button
+					[class.incorrect]="isIncorrect[2]"
+					[class.correct]="isCorrect[2]"
+					[class.selectedAns]="!correctAns && selectedAns == 3"
+					class="ansBtn" (click)="onAnsClick(3)">{{answers[2]}}
+				</button>
+			</div>
+		</th>
+		<th>
+			<div class="ansdiv">
+					<img class="wrong" *ngIf="isIncorrect[3]" src="../../assets/wrong.png">
+					<img class="right" *ngIf="isCorrect[3]"   src="../../assets/right.png">
+					<button
+					[class.incorrect]="isIncorrect[3]"
+					[class.correct]="isCorrect[3]"
+					[class.selectedAns]="!correctAns && selectedAns == 4"
+					class="ansBtn" (click)="onAnsClick(4)">{{answers[3]}}
+				</button>
+			</div>
+		</th>
+	</tr>
+</table>
+<div class="space"></div>
+<div class="btnDecorator">
+	<button class="btn" [class.availableBtn]="selectedAns" (click)="onClick()">{{btnContent}}</button>
+</div>
+</div>

@@ -1,0 +1,14 @@
+<div id="div">
+  <img class="logo" src="../../assets/logo.png">
+  <img class="upper" src="../../assets/dash.png">
+</div>
+<app-question [currentQ]="currentQ" [qNum]="qNum" (loadNext)="next()"></app-question>
+<div class="space"></div>
+<table class="circlesTable">
+  <tr>
+    <td *ngFor="let q of qs.results">
+      <div class="circle" [class.current]="q===currentQ"></div>
+    </td>
+  </tr>
+</table>
+<img class="lower" src="../../assets/dash.png">
