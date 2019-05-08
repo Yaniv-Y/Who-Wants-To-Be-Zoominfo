@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Question, Questions, qs } from './question/questions'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,22 @@ import { Question, Questions, qs } from './question/questions'
 export class AppComponent {
 	qNum: number = 0;
 	currentQ: Question;
-  title = 'who-wants-to-be-zoominfo';
-  qs: Questions = qs;
+  qs: Questions;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
-  	this.next();
+  	this.http.get<Questions>("https://opentdb.com/api.php?amount=10&type=multiple")
+  		.subscribe(qs => {
+  			this.qs = qs;
+  			this.next();
+  		})
   }
 
   next() {
-  	if (this.qNum == qs.results.length)
+  	if (this.qNum == this.qs.results.length)
   		return;
   	this.qNum++;
-		this.currentQ = qs.results[this.qNum - 1];
+		this.currentQ = this.qs.results[this.qNum - 1];
   }
 }
